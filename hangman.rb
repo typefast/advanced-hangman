@@ -104,10 +104,10 @@ end
 
 hangman = Hangman.new
 hangman.random_word
-hangman.display_word
 loop do 
   puts "1. Load a game, 2. Play"
   starting_action = gets.chomp
+  hangman.display_word if starting_action == "2"
   case starting_action
   when "1"
     saved = Saved.new

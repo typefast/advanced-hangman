@@ -1,15 +1,12 @@
 --- !ruby/object:Hangman
 correct_letters:
+- e
+- e
+- t
+incorrect_letters:
 - a
-- o
+- i
 - o
 - u
-- r
-incorrect_letters:
-- e
-- i
-- k
-- t
-- z
-secret_word: paramour
-guesses: 5
+secret_word: trestle
+guesses: 6
