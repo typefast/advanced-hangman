@@ -1,4 +1,3 @@
-#show guesses left. 
 #update display to reflect correct on incorrect guess if out of gueeses the player should lose
 class Hangman
   attr_reader :correct_letters, :incorrect_letters, :secret_word
@@ -44,6 +43,7 @@ class Hangman
     letter = gets.chomp.downcase
     correct_letter?(letter)
     display_updated_word(@secret_word, @correct_letters)
+    no_guesses?
   end
   
   def correct_letter?(letter)
@@ -65,6 +65,15 @@ class Hangman
   def reduce_guesses
     @guesses = @guesses - 1
     puts "You have #{@guesses} guesses left."
+  end
+  
+  def no_guesses?
+    if @guesses == 0
+      puts "Unlucky friend, better luck next time!"
+      puts "You ran out of guesses!"
+      puts "The word was actually: #{@secret_word}"
+      exit(0)
+    end
   end
 end
 
