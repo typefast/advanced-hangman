@@ -25,7 +25,12 @@ class Hangman
   def display_updated_word(word, array_of_letters)
     subbed_word = []
     word.split('').each do |letter|
+      #change
+      if array_of_letters.empty?
+      subbed = letter.gsub(/[a-z]/, '_ ')
+      else
       subbed = letter.gsub(/[^#{array_of_letters}]/, '_ ')
+      end
       subbed_word << subbed
     end
     puts subbed_word.join(' ')
