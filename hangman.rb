@@ -1,4 +1,3 @@
-#update display to reflect correct on incorrect guess if out of gueeses the player should lose
 class Hangman
   attr_reader :correct_letters, :incorrect_letters, :secret_word
   attr_accessor :guesses
@@ -10,13 +9,9 @@ class Hangman
   end
   
   def random_word
-    dictionary = File.open('desk.txt', 'r')
-    words = []
-    
-    dictionary.each_line do |word|
-        words << word.chomp.downcase if word.length <= 12 && word.length >= 5
-    end
-    @secret_word << words.sample
+    dictionary = File.open('desk.txt', 'r') {|file| file.read }
+    random_words = dictionary.split.select { |word| word.length.between?(5,12) }
+    @secret_word << random_words.sample.downcase
   end
   
   def display_word
