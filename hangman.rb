@@ -1,14 +1,13 @@
-#Show guessed letters in the word
-#show list of incorrect letters
 #show guesses left. 
-#each turn allow the guess of a letter guess_letter
 #update display to reflect correct on incorrect guess if out of gueeses the player should lose
 class Hangman
   attr_reader :correct_letters, :incorrect_letters, :secret_word
+  attr_accessor :guesses
   def initialize
     @correct_letters = []
     @incorrect_letters = []
     @secret_word = ''
+    @guesses = 10
   end
   
   def random_word
@@ -36,9 +35,11 @@ class Hangman
       subbed_word << subbed
     end
     puts subbed_word.join(' ')
+    subbed_word
   end
   
   def guess_letter
+    list_incorrect_letters
     puts "Guess a letter: "
     letter = gets.chomp.downcase
     correct_letter?(letter)
@@ -52,7 +53,18 @@ class Hangman
     elsif !secret_word.include? letter
       puts "Unlucky"
       incorrect_letters << letter
+      reduce_guesses
     end
+  end
+  
+  def list_incorrect_letters
+    puts "The incorrect letters you have guessed are: "
+    puts @incorrect_letters.join(' ')
+  end
+  
+  def reduce_guesses
+    @guesses = @guesses - 1
+    puts "You have #{@guesses} guesses left."
   end
 end
 
