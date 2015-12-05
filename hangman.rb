@@ -44,6 +44,7 @@ class Hangman
     correct_letter?(letter)
     display_updated_word(@secret_word, @correct_letters)
     no_guesses?
+    won?
   end
   
   def correct_letter?(letter)
@@ -65,6 +66,15 @@ class Hangman
   def reduce_guesses
     @guesses = @guesses - 1
     puts "You have #{@guesses} guesses left."
+  end
+  
+  def won?
+    secret_word_array = @secret_word.split('')
+    if (secret_word_array - @correct_letters).empty?
+      puts "Winner!"
+      puts "You guessed #{@secret_word}"
+      exit(0)
+    end
   end
   
   def no_guesses?
