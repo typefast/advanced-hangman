@@ -1,10 +1,14 @@
-#load in the dictionary and randomly select a word between 5 and 12 characters long (secret_word)
 #Show guessed letters in the word
 #show list of incorrect letters
 #show guesses left. 
 #each turn allow the guess of a letter guess_letter
 #update display to reflect correct on incorrect guess if out of gueeses the player should lose
 class Hangman
+  attr_reader :correct_letters, :incorrect_letters
+  def initialize
+    @correct_letters = []
+    @incorrect_letters = []
+  end
   
   def random_word
     dictionary = File.open('desk.txt', 'r')
@@ -17,6 +21,11 @@ class Hangman
   end
   
   def guess_letter
+    puts "Guess a letter: "
+    letter = gets.chomp.downcase
+  end
+  
+  def correct_letter?(letter)
   end
 end
 
