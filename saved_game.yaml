@@ -4,10 +4,12 @@ correct_letters:
 - o
 - o
 - u
+- r
 incorrect_letters:
 - e
 - i
 - k
 - t
+- z
 secret_word: paramour
-guesses: 6
+guesses: 5

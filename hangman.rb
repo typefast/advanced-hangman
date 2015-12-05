@@ -105,22 +105,31 @@ end
 hangman = Hangman.new
 hangman.random_word
 hangman.display_word
-loop do
-  puts "What do you want to do?"
-  puts "1. save the game, 2.load a game 3.guess a letter 4. Exit"
-  action = gets.chomp
-  case action
+loop do 
+  puts "1. Load a game, 2. Play"
+  starting_action = gets.chomp
+  case starting_action
   when "1"
     saved = Saved.new
-    saved.save_game(hangman)
-  when "2"
-    saved = Saved.new
     hangman = saved.load_game
-  when "3"
-    hangman.guess_letter
-  when "4" 
-    exit(0)
+  when "2"
+  loop do
+    puts "What do you want to do?"
+    puts "1. Save the game, 2. Guess a letter 3. Exit"
+    action = gets.chomp
+    case action
+    when "1"
+      saved = Saved.new
+      saved.save_game(hangman)
+    when "2"
+      hangman.guess_letter
+    when "3"
+      exit(0)
+    end
   end
+  end
+
 end
+
 
 
