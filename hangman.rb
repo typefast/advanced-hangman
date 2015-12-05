@@ -21,6 +21,14 @@ class Hangman
     @secret_word << words.sample
   end
   
+  def display_word
+    word = @secret_word
+    blank_word = word.gsub(/[a-z]/, ' _')
+    
+    puts "The word is #{word.length} characters in length."
+    puts "#{blank_word}"
+  end
+  
   def guess_letter
     puts "Guess a letter: "
     letter = gets.chomp.downcase
@@ -30,15 +38,19 @@ class Hangman
   def correct_letter?(letter)
     if secret_word.include? letter
       puts "Nice"
+      correct_letters << letter
     elsif !secret_word.include? letter
       puts "Unlucky"
+      incorrect_letters << letter
     end
   end
 end
 
 hangman = Hangman.new
 hangman.random_word
+hangman.display_word
+loop do
 hangman.guess_letter
-
+end
 
 
