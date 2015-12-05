@@ -1,3 +1,4 @@
+require 'yaml'
 class Hangman
   attr_reader :correct_letters, :incorrect_letters, :secret_word
   attr_accessor :guesses
@@ -87,11 +88,39 @@ class Hangman
   end
 end
 
+class Saved
+  def save_game(hangman_game)
+    yaml = YAML::dump(hangman_game)
+    saved_file = File.open('saved_game.yaml', 'w')
+    saved_file.write(yaml)
+  end
+  
+  def load_game
+    game = File.open('saved_game.yaml', 'r')
+    yaml = game.read
+    YAML::load(yaml)
+  end
+end
+
 hangman = Hangman.new
 hangman.random_word
 hangman.display_word
 loop do
-hangman.guess_letter
+  puts "What do you want to do?"
+  puts "1. save the game, 2.load a game 3.guess a letter 4. Exit"
+  action = gets.chomp
+  case action
+  when "1"
+    saved = Saved.new
+    saved.save_game(hangman)
+  when "2"
+    saved = Saved.new
+    hangman = saved.load_game
+  when "3"
+    hangman.guess_letter
+  when "4" 
+    exit(0)
+  end
 end
 
 

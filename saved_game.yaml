@@ -1,0 +1,13 @@
+--- !ruby/object:Hangman
+correct_letters:
+- a
+- o
+- o
+- u
+incorrect_letters:
+- e
+- i
+- k
+- t
+secret_word: paramour
+guesses: 6
