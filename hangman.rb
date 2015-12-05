@@ -29,10 +29,20 @@ class Hangman
     puts "#{blank_word}"
   end
   
+  def display_updated_word(word, array_of_letters)
+    subbed_word = []
+    word.split('').each do |letter|
+      subbed = letter.gsub(/[^#{array_of_letters}]/, '_ ')
+      subbed_word << subbed
+    end
+    puts subbed_word.join(' ')
+  end
+  
   def guess_letter
     puts "Guess a letter: "
     letter = gets.chomp.downcase
     correct_letter?(letter)
+    display_updated_word(@secret_word, @correct_letters)
   end
   
   def correct_letter?(letter)
